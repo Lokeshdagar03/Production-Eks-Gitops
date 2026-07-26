@@ -3,6 +3,14 @@
 *.tfstate
 *.tfstate.*
 .terraform.lock.hcl
+*.tfvars
+*.tfplan
+
+# Ignore provider locks inside modules
+terraform/modules/**/.terraform.lock.hcl
+
+# Keep only the environment lock file
+!terraform/environments/dev/.terraform.lock.hcl
 
 # Variables
 *.tfvars
