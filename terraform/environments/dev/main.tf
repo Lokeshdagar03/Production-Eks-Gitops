@@ -40,3 +40,9 @@ module "eks" {
     module.vpc.private_subnet_2_id
   ]
 }
+module "ecr" {
+  source = "../../modules/ecr"
+
+  repository_name = "production-eks-app"
+  environment     = "dev"
+}
