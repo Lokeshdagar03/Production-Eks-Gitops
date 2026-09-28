@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: production-eks-app
-          image: 538774546514.dkr.ecr.ap-south-1.amazonaws.com/production-eks-app:v1
+          image: 538774546514.dkr.ecr.ap-south-1.amazonaws.com/production-eks-app:a27ecb9
           ports:
             - containerPort: 3000
           readinessProbe:
