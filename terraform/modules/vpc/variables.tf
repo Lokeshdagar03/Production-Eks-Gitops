@@ -43,3 +43,7 @@ variable "availability_zone_2" {
   description = "Secondary Availability Zone"
   type        = string
 }
+variable "cluster_name" {
+  description = "EKS Cluster Name"
+  type        = string
+}

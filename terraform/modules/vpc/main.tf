@@ -5,6 +5,7 @@ resource "aws_vpc" "this" {
 
   tags = {
     Name        = "${var.project_name}-${var.environment}-vpc"
+    Project     = var.project_name
     Environment = var.environment
     ManagedBy   = "Terraform"
   }
@@ -17,9 +18,13 @@ resource "aws_subnet" "public_subnet_1" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "${var.project_name}-${var.environment}-public-subnet-1"
+    Name        = "${var.project_name}-${var.environment}-public-subnet-1"
+    Project     = var.project_name
+    Environment = var.environment
+    ManagedBy   = "Terraform"
 
-    "kubernetes.io/role/elb" = "1"
+    "kubernetes.io/role/elb"                    = "1"
+    "kubernetes.io/cluster/${var.cluster_name}" = "shared"
   }
 }
 
@@ -30,9 +35,13 @@ resource "aws_subnet" "public_subnet_2" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "${var.project_name}-${var.environment}-public-subnet-2"
+    Name        = "${var.project_name}-${var.environment}-public-subnet-2"
+    Project     = var.project_name
+    Environment = var.environment
+    ManagedBy   = "Terraform"
 
-    "kubernetes.io/role/elb" = "1"
+    "kubernetes.io/role/elb"                    = "1"
+    "kubernetes.io/cluster/${var.cluster_name}" = "shared"
   }
 }
 
@@ -42,9 +51,13 @@ resource "aws_subnet" "private_subnet_1" {
   availability_zone = var.availability_zone_1
 
   tags = {
-    Name = "${var.project_name}-${var.environment}-private-subnet-1"
+    Name        = "${var.project_name}-${var.environment}-private-subnet-1"
+    Project     = var.project_name
+    Environment = var.environment
+    ManagedBy   = "Terraform"
 
-    "kubernetes.io/role/internal-elb" = "1"
+    "kubernetes.io/role/internal-elb"           = "1"
+    "kubernetes.io/cluster/${var.cluster_name}" = "shared"
   }
 }
 
@@ -54,16 +67,23 @@ resource "aws_subnet" "private_subnet_2" {
   availability_zone = var.availability_zone_2
 
   tags = {
-    Name = "${var.project_name}-${var.environment}-private-subnet-2"
+    Name        = "${var.project_name}-${var.environment}-private-subnet-2"
+    Project     = var.project_name
+    Environment = var.environment
+    ManagedBy   = "Terraform"
 
-    "kubernetes.io/role/internal-elb" = "1"
+    "kubernetes.io/role/internal-elb"           = "1"
+    "kubernetes.io/cluster/${var.cluster_name}" = "shared"
   }
 }
 resource "aws_internet_gateway" "this" {
   vpc_id = aws_vpc.this.id
 
   tags = {
-    Name = "${var.project_name}-${var.environment}-igw"
+    Name        = "${var.project_name}-${var.environment}-igw"
+    Project     = var.project_name
+    Environment = var.environment
+    ManagedBy   = "Terraform"
   }
 }
 resource "aws_route_table" "public" {
@@ -76,7 +96,10 @@ resource "aws_route_table" "public" {
   }
 
   tags = {
-    Name = "${var.project_name}-${var.environment}-public-rt"
+    Name        = "${var.project_name}-${var.environment}-public-rt"
+    Project     = var.project_name
+    Environment = var.environment
+    ManagedBy   = "Terraform"
   }
 }
 resource "aws_route_table_association" "public_1" {
@@ -92,7 +115,10 @@ resource "aws_eip" "nat" {
   domain = "vpc"
 
   tags = {
-    Name = "${var.project_name}-${var.environment}-nat-eip"
+    Name        = "${var.project_name}-${var.environment}-nat-eip"
+    Project     = var.project_name
+    Environment = var.environment
+    ManagedBy   = "Terraform"
   }
 }
 resource "aws_nat_gateway" "this" {
@@ -104,7 +130,10 @@ resource "aws_nat_gateway" "this" {
   ]
 
   tags = {
-    Name = "${var.project_name}-${var.environment}-nat"
+    Name        = "${var.project_name}-${var.environment}-nat"
+    Project     = var.project_name
+    Environment = var.environment
+    ManagedBy   = "Terraform"
   }
 }
 resource "aws_route_table" "private" {
@@ -116,7 +145,10 @@ resource "aws_route_table" "private" {
   }
 
   tags = {
-    Name = "${var.project_name}-${var.environment}-private-rt"
+    Name        = "${var.project_name}-${var.environment}-private-rt"
+    Project     = var.project_name
+    Environment = var.environment
+    ManagedBy   = "Terraform"
   }
 }
 resource "aws_route_table_association" "private_1" {

@@ -27,3 +27,14 @@ crash.*.log
 # OS
 .DS_Store
 Thumbs.db
+
+# Node
+app/node_modules/
+npm-debug.log*
+
+# Environment
+.env
+.env.*
+
+# Temporary
+images.json
