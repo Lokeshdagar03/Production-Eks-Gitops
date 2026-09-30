@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: production-eks-app
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/Lokeshdagar03/Production-Eks-Gitops.git
+    targetRevision: production-v2
+    path: k8s
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: production-app
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
